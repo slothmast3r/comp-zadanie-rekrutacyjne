@@ -1,42 +1,41 @@
-import React, {useEffect, useState} from 'react';
-import GoogleMapReact from 'google-map-react';
-import Marker from './Marker';
-import axios from "axios";
+import React, { useEffect, useState } from "react";
+import GoogleMapReact from "google-map-react";
+import { useFetch } from "../client/useFetch";
+import { Marker } from "./Marker";
 
+const warsawCoordinate = { lat: 52.24732278524699, lng: 21.011729601193167 };
 
-const MapWithMarkers = (props: any) => {
-    const [center, setCenter] = useState({lat: 11.0168, lng: 76.9558 });
+const compUrl = "https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE";
+
+const MapWithMarkers = () => {
+    const [center, setCenter] = useState(warsawCoordinate);
     const [zoom, setZoom] = useState(11);
-    const [data, setData] = useState<any>([])
+    const { data, loading, error } = useFetch(compUrl);
 
-    const compUrl = 'https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE'
-    const fetchData = async ()=>{
-        const response = await axios(compUrl)
-        setData(response.data.objects)
-        if(data.length)
-            setCenter({lat: data[0].location.latitude, lng: data[0].location.longitude})
-
-    }
-    useEffect(()=>{
-       fetchData()
-    },[])
+    const AnyReactComponent = ({ text }: { text: string }) => <div>{text}</div>;
 
     return (
-        <div style={{ height: '60vh', width: '100%' }}>
+        <div style={{ height: "70vh", width: "100%" }}>
             <GoogleMapReact
-                bootstrapURLKeys={{ key: 'AIzaSyArEQx-mWZgg2UH8zYNjU5g3R0e7iyH0_I' }}
+                bootstrapURLKeys={{ key: "AIzaSyArEQx-mWZgg2UH8zYNjU5g3R0e7iyH0_I" }}
                 defaultCenter={center}
                 defaultZoom={zoom}
             >
-                {data.map((car: { location: {latitude: number, longitude: number} }, index: number)=>{
-                return <Marker key={index}
-                    lat={car.location.latitude}
-                    lng={car.location.longitude}
-                    />
-            })}
+                {data &&
+                    // @ts-ignore
+                    data.objects.map((item: any) => {
+                        console.log(item);
+                        return (
+                            <Marker
+                                //  @ts-ignore
+                                lat={item.location.latitude}
+                                lng={item.location.longitude}
+                                text="My Marker"
+                            />
+                        );
+                    })}
             </GoogleMapReact>
         </div>
     );
-}
-
-export default MapWithMarkers;
+};
+export default MapWithMarkers
