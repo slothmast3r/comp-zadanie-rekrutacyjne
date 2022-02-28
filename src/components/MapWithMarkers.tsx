@@ -15,7 +15,6 @@ const MapWithMarkers = (props: any) => {
         setData(response.data.objects)
         if(data.length)
             setCenter({lat: data[0].location.latitude, lng: data[0].location.longitude})
-        console.log(center)
 
     }
     useEffect(()=>{
