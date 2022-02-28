@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.scss';
-import MapWrapper from "./components/MapWrapper";
+import MapWrapper from "./components/Map";
 
 function App() {
   return (
