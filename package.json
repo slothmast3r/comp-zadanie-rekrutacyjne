@@ -50,6 +50,7 @@
   "devDependencies": {
     "@types/google-map-react": "^2.1.5",
     "eslint-config-typescript": "^3.0.0",
+    "prettier": "2.5.1",
     "sass": "^1.49.9",
     "sass-loader": "^12.6.0",
     "webpack": "^5.69.1"

@@ -1,5 +1,5 @@
 {
-  "objects" :[
+  "objects": [
     {
       "name": "Theodore",
       "colour": "#f77b79",
@@ -9,7 +9,7 @@
       "rangeKm": 64,
       "batteryLevelPct": 34,
       "location": {
-        "latitude" : 62.209801216,
+        "latitude": 62.209801216,
         "longitude": 72.3914858496
       },
       "text": "Available"
@@ -38,7 +38,7 @@
       "batteryLevelPct": 34,
       "location": {
         "latitude": 63.709801216,
-        "longitude":72.3914858496
+        "longitude": 72.3914858496
       },
       "text": "Available"
     },
@@ -52,7 +52,7 @@
       "batteryLevelPct": 96,
       "location": {
         "latitude": 61.209801216,
-        "longitude":72.3914858496
+        "longitude": 72.3914858496
       },
       "text": "Available"
     },

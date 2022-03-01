@@ -1,15 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.scss';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.scss";
 import MapWithMarkers from "./components/MapWithMarkers";
 
 function App() {
   return (
     <div className="App">
-      <h1 className="App-header">
-        Zadanie rekrutacyjne Enigma
-      </h1>
-        <MapWithMarkers/>
+      <h1 className="App-header">Zadanie rekrutacyjne Enigma</h1>
+      <MapWithMarkers />
     </div>
   );
 }
