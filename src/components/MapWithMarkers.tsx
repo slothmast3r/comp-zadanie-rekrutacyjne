@@ -12,6 +12,7 @@ const MapWithMarkers = () => {
     const [center, setCenter] = useState(warsawCoordinate);
     const [zoom, setZoom] = useState(11);
     const { data, loading, error } = useFetch(compUrl);
+    console.log(data)
 
     return (
         <div style={{ height: "70vh", width: "100%" }}>
@@ -20,17 +21,18 @@ const MapWithMarkers = () => {
                 defaultCenter={center}
                 defaultZoom={zoom}
             >
-                {data &&
-                    data.objects.map((item: ApiTypes) => {
-                        return (
-                            <Marker
-                                // @ts-ignore
-                                lat={item.location.latitude}
-                                lng={item.location.longitude}
-                                text="My Marker"
-                            />
-                        );
-                    })}
+                {data
+                    // @ts-ignore
+                    && data.objects.map((item: ApiTypes) => {
+                    return (
+                        <Marker
+                            // @ts-ignore
+                            lat={item.location.latitude}
+                            lng={item.location.longitude}
+                            text="My Marker"
+                        />
+                    );
+                })}
             </GoogleMapReact>
         </div>
     );
