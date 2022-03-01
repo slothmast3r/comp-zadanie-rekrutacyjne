@@ -4,7 +4,6 @@ import GoogleMapReact from "google-map-react";
 import useSupercluster from "use-supercluster";
 import jsonData from "../client/test-data.json";
 import VehicleImage from "./VehicleImage";
-const fetcher = (...args) => fetch(...args).then((response) => response.json());
 
 // RENDER PROPS / HOC
 const Marker = ({ children }) => children;
@@ -18,7 +17,7 @@ export default function App() {
 
   const points = data.objects.map((item) => ({
     type: "Feature",
-    properties: { cluster: false, crimeId: item.id },
+    properties: { cluster: false, ...item },
     geometry: {
       type: "Point",
       coordinates: [
@@ -59,7 +58,7 @@ export default function App() {
           const [longitude, latitude] = cluster.geometry.coordinates;
           const { cluster: isCluster, point_count: pointCount } =
             cluster.properties;
-
+          console.log(cluster.properties);
           if (isCluster) {
             return (
               <Marker
@@ -93,11 +92,11 @@ export default function App() {
 
           return (
             <Marker
-              key={`crime-${cluster.properties.crimeId}`}
+              key={`vehicle-${cluster.properties.id}`}
               lat={latitude}
               lng={longitude}
             >
-              <VehicleImage />
+              <VehicleImage color={cluster.properties.colour} />
             </Marker>
           );
         })}
