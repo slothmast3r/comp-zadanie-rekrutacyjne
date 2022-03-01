@@ -3,6 +3,7 @@ import React, { useState, useRef } from "react";
 import GoogleMapReact from "google-map-react";
 import useSupercluster from "use-supercluster";
 import jsonData from "../client/test-data.json";
+import VehicleImage from "./VehicleImage";
 const fetcher = (...args) => fetch(...args).then(response => response.json());
 
 // RENDER PROPS / HOC
@@ -74,6 +75,7 @@ export default function App() {
                                         width: `${10 + (pointCount / points.length) * 20}px`,
                                         height: `${10 + (pointCount / points.length) * 20}px`,
                                         color: 'white',
+                                        cursor: 'pointer',
                                         background: 'black'
                                     }}
                                     onClick={() => {
@@ -97,9 +99,7 @@ export default function App() {
                             lat={latitude}
                             lng={longitude}
                         >
-                            <button className="crime-marker">
-                                POINTER
-                            </button>
+                            <VehicleImage/>
                         </Marker>
                     );
                 })}
