@@ -6,7 +6,7 @@ declare global {
             NODE_ENV: 'development' | 'production';
             PORT?: string;
             PWD: string;
-            GOOGLE_MAP_KEY: string;
+            GOOGLE_MAP_API_KEY: string;
         }
     }
 }
