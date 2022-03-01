@@ -1,0 +1,74 @@
+{
+  "objects" :[
+    {
+      "name": "Theodore",
+      "colour": "#f77b79",
+      "id": "AE08AA26-8BA4-3B59-A745-114E866DE327",
+      "plateNumber": "A1238BDC-42C6-381D-15A8-4C02167C9B1A",
+      "description": "a mi fringilla mi lacinia mattis. Integer eu lacus. Quisque",
+      "rangeKm": 64,
+      "batteryLevelPct": 34,
+      "location": {
+        "latitude" : 62.209801216,
+        "longitude": 72.3914858496
+      },
+      "text": "Available"
+    },
+    {
+      "name": "Clayton",
+      "colour": "#ddac52",
+      "id": "DF5799A4-EABA-DAA8-A7C8-C59E2888A1E6",
+      "plateNumber": "9EEE0EF2-EE56-5231-14A9-15E1B1335BB8",
+      "description": "nec ante blandit viverra. Donec tempus, lorem fringilla ornare placerat,",
+      "rangeKm": 68,
+      "batteryLevelPct": 60,
+      "location": {
+        "latitude": 63.209801216,
+        "longitude": 73.3914858496
+      },
+      "text": "Unavaible"
+    },
+    {
+      "name": "Jason",
+      "colour": "#157f7f",
+      "id": "3FE20A0A-3D49-B746-9252-042184DAD422",
+      "plateNumber": "ED3DA470-5CBA-A577-4EBF-2C1982C153A4",
+      "description": "ligula. Nullam feugiat placerat velit. Quisque varius. Nam porttitor scelerisque",
+      "rangeKm": 68,
+      "batteryLevelPct": 34,
+      "location": {
+        "latitude": 63.709801216,
+        "longitude":72.3914858496
+      },
+      "text": "Available"
+    },
+    {
+      "name": "Hilel",
+      "colour": "#fcc3ba",
+      "id": "E4B5C64B-5A82-27B9-CB68-CD49D2608E92",
+      "plateNumber": "B94CB76E-1481-E9AB-5C7F-746BBCB32DBD",
+      "description": "Pellentesque ut ipsum ac mi eleifend egestas. Sed pharetra, felis",
+      "rangeKm": 17,
+      "batteryLevelPct": 96,
+      "location": {
+        "latitude": 61.209801216,
+        "longitude":72.3914858496
+      },
+      "text": "Available"
+    },
+    {
+      "name": "Signe",
+      "colour": "#3069cc",
+      "id": "2848388F-DB32-947C-9675-46C885276251",
+      "plateNumber": "2719B16B-272D-154D-2D37-33047ABB6748",
+      "description": "tincidunt, neque vitae semper egestas, urna justo faucibus lectus, a",
+      "rangeKm": 26,
+      "batteryLevelPct": 65,
+      "location": {
+        "longitude": 63,
+        "latitude": 71.555558496
+      },
+      "text": "Available"
+    }
+  ]
+}

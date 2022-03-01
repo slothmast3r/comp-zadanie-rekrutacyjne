@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <h1 className="App-header">
-        Zadanie rekrutacyjne COMP
+        Zadanie rekrutacyjne Enigma
       </h1>
         <MapWithMarkers/>
     </div>
