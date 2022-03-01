@@ -17,7 +17,7 @@ const MapWithMarkers = () => {
     return (
         <div style={{ height: "70vh", width: "100%" }}>
             <GoogleMapReact
-                bootstrapURLKeys={{ key: "AIzaSyArEQx-mWZgg2UH8zYNjU5g3R0e7iyH0_I" }}
+                bootstrapURLKeys={{ key: process.env.GOOGLE_MAP_KEY }}
                 defaultCenter={center}
                 defaultZoom={zoom}
             >
