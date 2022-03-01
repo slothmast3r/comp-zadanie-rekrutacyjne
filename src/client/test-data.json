@@ -9,8 +9,8 @@
       "rangeKm": 64,
       "batteryLevelPct": 34,
       "location": {
-        "latitude" :62.209801216,
-        "longitude":-50.3914858496
+        "latitude" : 62.209801216,
+        "longitude": 72.3914858496
       },
       "text": "Available"
     },
@@ -23,8 +23,8 @@
       "rangeKm": 68,
       "batteryLevelPct": 60,
       "location": {
-        "latitude": -55.501095936,
-        "longitude": -153.6180744192
+        "latitude": 63.209801216,
+        "longitude": 73.3914858496
       },
       "text": "Unavaible"
     },
@@ -37,8 +37,8 @@
       "rangeKm": 68,
       "batteryLevelPct": 34,
       "location": {
-        "latitude": -36.5761386496,
-        "longitude": 30.1537421312
+        "latitude": 63.709801216,
+        "longitude":72.3914858496
       },
       "text": "Available"
     },
@@ -51,8 +51,8 @@
       "rangeKm": 17,
       "batteryLevelPct": 96,
       "location": {
-        "latitude": 27.5691262976,
-        "longitude":-129.7848717312
+        "latitude": 61.209801216,
+        "longitude":72.3914858496
       },
       "text": "Available"
     },
@@ -65,8 +65,8 @@
       "rangeKm": 26,
       "batteryLevelPct": 65,
       "location": {
-        "longitude": 68.8759243776,
-        "latitude": 15.8991330304
+        "longitude": 63,
+        "latitude": 71.555558496
       },
       "text": "Available"
     }

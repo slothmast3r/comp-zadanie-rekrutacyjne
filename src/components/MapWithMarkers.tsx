@@ -1,39 +1,109 @@
-import React, { useEffect, useState } from "react";
+// @ts-nocheck
+import React, { useState, useRef } from "react";
 import GoogleMapReact from "google-map-react";
-import { useFetch } from "../client/useFetch";
-import { Marker } from "./Marker";
-import {ApiTypes} from "../client/api-types";
+import useSupercluster from "use-supercluster";
+import jsonData from "../client/test-data.json";
+const fetcher = (...args) => fetch(...args).then(response => response.json());
 
-const warsawCoordinate = { lat: 52.24732278524699, lng: 21.011729601193167 };
+// RENDER PROPS / HOC
+const Marker = ({ children }) => children;
 
-const compUrl = "https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE";
+export default function App() {
+    const mapRef = useRef();
+    const [bounds, setBounds] = useState(null);
+    const [zoom, setZoom] = useState(10);
+    const dataString = JSON.stringify(jsonData);
+    const data = JSON.parse(dataString);
 
-const MapWithMarkers = () => {
-    const [center, setCenter] = useState(warsawCoordinate);
-    const [zoom, setZoom] = useState(11);
-    const { data, loading, error } = useFetch(compUrl);
+    const points = data.objects.map(item => ({
+        type: "Feature",
+        properties: { cluster: false, crimeId: item.id },
+        geometry: {
+            type: "Point",
+            coordinates: [
+                parseFloat(item.location.longitude),
+                parseFloat(item.location.latitude)
+            ]
+        }
+    }));
+
+    const { clusters, supercluster } = useSupercluster({
+        points,
+        bounds,
+        zoom,
+        options: { radius: 75, maxZoom: 20 }
+    });
 
     return (
-        <div style={{ height: "70vh", width: "100%" }}>
+        <div style={{ height: "100vh", width: "100%" }}>
             <GoogleMapReact
-                bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_API_KEY }}
-                defaultCenter={center}
-                defaultZoom={zoom}
+                bootstrapURLKeys={{ key: "AIzaSyCHUtrOWFcrWUyqhtUH_OnPB0cBv0HGdhU" }}
+                defaultCenter={{ lat: 63, lng: 71.135171 }}
+                defaultZoom={10}
+                yesIWantToUseGoogleMapApiInternals
+                onGoogleApiLoaded={({ map }) => {
+                    mapRef.current = map;
+                }}
+                onChange={({ zoom, bounds }) => {
+                    setZoom(zoom);
+                    setBounds([
+                        bounds.nw.lng,
+                        bounds.se.lat,
+                        bounds.se.lng,
+                        bounds.nw.lat
+                    ]);
+                }}
             >
-                {data
-                    // @ts-ignore
-                    && data.objects.map((item: ApiTypes) => {
+                {clusters.map(cluster => {
+                    const [longitude, latitude] = cluster.geometry.coordinates;
+                    const {
+                        cluster: isCluster,
+                        point_count: pointCount
+                    } = cluster.properties;
+
+                    if (isCluster) {
+                        return (
+                            <Marker
+                                key={`cluster-${cluster.id}`}
+                                lat={latitude}
+                                lng={longitude}
+                            >
+                                <div
+                                    className="cluster-marker"
+                                    style={{
+                                        width: `${10 + (pointCount / points.length) * 20}px`,
+                                        height: `${10 + (pointCount / points.length) * 20}px`,
+                                        color: 'white',
+                                        background: 'black'
+                                    }}
+                                    onClick={() => {
+                                        const expansionZoom = Math.min(
+                                            supercluster.getClusterExpansionZoom(cluster.id),
+                                            20
+                                        );
+                                        mapRef.current.setZoom(expansionZoom);
+                                        mapRef.current.panTo({ lat: latitude, lng: longitude });
+                                    }}
+                                >
+                                    {pointCount}
+                                </div>
+                            </Marker>
+                        );
+                    }
+
                     return (
                         <Marker
-                            // @ts-ignore
-                            lat={item.location.latitude}
-                            lng={item.location.longitude}
-                            text="My Marker"
-                        />
+                            key={`crime-${cluster.properties.crimeId}`}
+                            lat={latitude}
+                            lng={longitude}
+                        >
+                            <button className="crime-marker">
+                                POINTER
+                            </button>
+                        </Marker>
                     );
                 })}
             </GoogleMapReact>
         </div>
     );
-};
-export default MapWithMarkers
+}
