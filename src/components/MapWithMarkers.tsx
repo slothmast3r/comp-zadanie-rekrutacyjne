@@ -12,12 +12,11 @@ const MapWithMarkers = () => {
     const [center, setCenter] = useState(warsawCoordinate);
     const [zoom, setZoom] = useState(11);
     const { data, loading, error } = useFetch(compUrl);
-    console.log(data)
 
     return (
         <div style={{ height: "70vh", width: "100%" }}>
             <GoogleMapReact
-                bootstrapURLKeys={{ key: process.env.GOOGLE_MAP_API_KEY }}
+                bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_API_KEY }}
                 defaultCenter={center}
                 defaultZoom={zoom}
             >
