@@ -1,6 +1,7 @@
 interface VehicleType {
   color: string;
 }
+import "./MapWithClusters.scss"
 
 export default function VehicleImage(props: VehicleType) {
   return (
@@ -9,6 +10,7 @@ export default function VehicleImage(props: VehicleType) {
       version="1.0"
       width="50px"
       height="50px"
+      className={"vehicle-marker"}
       viewBox="0 0 1280.000000 640.000000"
       preserveAspectRatio="xMidYMid meet"
     >

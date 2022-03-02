@@ -4,6 +4,7 @@ import GoogleMapReact from "google-map-react";
 import useSupercluster from "use-supercluster";
 import jsonData from "../client/test-data.json";
 import VehicleImage from "./VehicleImage";
+import "./MapWithClusters.scss";
 
 // RENDER PROPS / HOC
 const Marker = ({ children }) => children;
@@ -35,7 +36,7 @@ export default function App() {
   });
 
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
+    <div className={"map-wrapper"}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyCHUtrOWFcrWUyqhtUH_OnPB0cBv0HGdhU" }}
         defaultCenter={{ lat: 63, lng: 71.135171 }}
@@ -58,7 +59,6 @@ export default function App() {
           const [longitude, latitude] = cluster.geometry.coordinates;
           const { cluster: isCluster, point_count: pointCount } =
             cluster.properties;
-          console.log(cluster.properties);
           if (isCluster) {
             return (
               <Marker
@@ -71,9 +71,6 @@ export default function App() {
                   style={{
                     width: `${10 + (pointCount / points.length) * 20}px`,
                     height: `${10 + (pointCount / points.length) * 20}px`,
-                    color: "white",
-                    cursor: "pointer",
-                    background: "black",
                   }}
                   onClick={() => {
                     const expansionZoom = Math.min(
