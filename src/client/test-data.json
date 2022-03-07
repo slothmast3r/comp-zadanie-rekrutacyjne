@@ -12,7 +12,7 @@
         "latitude": 62.209801216,
         "longitude": 72.3914858496
       },
-      "text": "Available"
+      "status": "available"
     },
     {
       "name": "Clayton",
@@ -26,7 +26,7 @@
         "latitude": 63.209801216,
         "longitude": 73.3914858496
       },
-      "text": "Unavaible"
+      "status": "unavailable"
     },
     {
       "name": "Jason",
@@ -40,7 +40,7 @@
         "latitude": 63.709801216,
         "longitude": 72.3914858496
       },
-      "text": "Available"
+      "status": "available"
     },
     {
       "name": "Hilel",
@@ -54,7 +54,7 @@
         "latitude": 61.209801216,
         "longitude": 72.3914858496
       },
-      "text": "Available"
+      "status": "available"
     },
     {
       "name": "Signe",
@@ -68,7 +68,7 @@
         "longitude": 63,
         "latitude": 71.555558496
       },
-      "text": "Available"
+      "status": "available"
     }
   ]
 }

@@ -9,7 +9,7 @@ interface ElementTypes {
 interface DropdownTypes {
     data: Array<ElementTypes>;
     placeHolder: string;
-    updateDropdownKey: (arg: string | number | null) => void;
+    onChange: (arg: string | number | null) => void;
 }
 
 export default function Dropdown(props: DropdownTypes) {
@@ -22,8 +22,9 @@ export default function Dropdown(props: DropdownTypes) {
     const toggleDropdown = () => setOpen(!isOpen);
 
     const handleItemClick = (id: string | number) => {
-        selectedItem == id ? setSelectedItem(null) : setSelectedItem(id);
-        props.updateDropdownKey(selectedItem)
+        let argument = selectedItem == id ? null : id;
+        setSelectedItem(argument)
+        props.onChange(argument)
     };
 
     return (

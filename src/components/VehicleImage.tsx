@@ -1,4 +1,4 @@
-import "./MapWithClusters.scss"
+import "./MapWithMarkers.scss"
 interface VehicleType {
   color: string;
 }

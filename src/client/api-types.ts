@@ -1,8 +1,7 @@
 export interface ApiTypes {
-  location: any;
   objects: Array<Type>;
 }
-interface Type {
+export interface Type {
   discriminator: string;
   platesNumber: string;
   sideNumber: string;

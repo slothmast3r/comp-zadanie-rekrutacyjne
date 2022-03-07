@@ -1,12 +1,14 @@
 // @ts-nocheck
-import React, {useState, useRef, useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import useSupercluster from "use-supercluster";
 import jsonData from "../client/test-data.json";
 import VehicleImage from "./VehicleImage";
-import "./MapWithClusters.scss";
+import "./MapWithMarkers.scss";
 import Dropdown from "./Dropdown";
-import {useFetch} from "../client/useFetch";
+import { useFetch } from "../client/useFetch";
+import { ApiTypes, Type } from "../client/api-types";
+import MultiRangeSlider from "./MultiRangeSlider";
 
 // RENDER PROPS / HOC
 const Marker = ({ children }) => children;
@@ -17,10 +19,19 @@ export default function App() {
   const [zoom, setZoom] = useState(10);
   const dataString = JSON.stringify(jsonData);
   const data = JSON.parse(dataString);
-  // const {data, loading, error} = useFetch('https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE')
-  const availabilityDropdown = [{label: 'Available', id: 'available'}, {label: 'Unavailable', id: 'unavailable'}]
+  const [vehicles, setVehicles] = useState(data.objects);
 
-  const points = data.objects.map((item) => ({
+  const [dropdownVehicleStatus, setDropdownVehicleStatus] = useState<
+    string | null
+  >(null);
+
+  // const {data, loading, error} = useFetch('https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE')
+  const availabilityDropdown = [
+    { label: "Available", id: "available" },
+    { label: "Unavailable", id: "unavailable" },
+  ];
+
+  const points = vehicles.map((item) => ({
     type: "Feature",
     properties: { cluster: false, ...item },
     geometry: {
@@ -38,12 +49,30 @@ export default function App() {
     zoom,
     options: { radius: 75, maxZoom: 20 },
   });
-  function updateDropdownKey(arg: string | number | null){
-    console.log(arg)
+  function updateDropdownKey(key: string | number | null) {
+    setDropdownVehicleStatus(key);
   }
+
+  useEffect(() => {
+    setVehicles(
+      data.objects.filter(
+        (element: Type) =>
+          element.status === dropdownVehicleStatus ||
+          dropdownVehicleStatus === null
+      )
+    );
+  }, [dropdownVehicleStatus]);
+
   return (
     <div className={"map-wrapper"}>
-      <Dropdown data={availabilityDropdown} updateDropdownKey={updateDropdownKey} placeHolder={'Select availability'}/>
+      <div className={"header-filters"}>
+        <Dropdown
+          data={availabilityDropdown}
+          onChange={updateDropdownKey}
+          placeHolder={"Select availability"}
+        />
+        <MultiRangeSlider min={0} max={100} onChange={() => {}} />
+      </div>
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_API_KEY }}
         defaultCenter={{ lat: 63, lng: 71.135171 }}
