@@ -24,6 +24,10 @@ export default function App() {
   const [dropdownVehicleStatus, setDropdownVehicleStatus] = useState<
     string | null
   >(null);
+  const [batteryRange, setBatteryRange] = useState<{
+    min: number;
+    max: number;
+  }>({ min: 0, max: 100 });
 
   // const {data, loading, error} = useFetch('https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE')
   const availabilityDropdown = [
@@ -52,16 +56,26 @@ export default function App() {
   function updateDropdownKey(key: string | number | null) {
     setDropdownVehicleStatus(key);
   }
+  function updateBatteryRange(argument) {
+    let argumentcopy = {...argument}
+    setBatteryRange(argumentcopy);
+  }
 
   useEffect(() => {
     setVehicles(
-      data.objects.filter(
-        (element: Type) =>
-          element.status === dropdownVehicleStatus ||
-          dropdownVehicleStatus === null
-      )
+      data.objects
+        .filter(
+          (element: Type) =>
+            element.status === dropdownVehicleStatus ||
+            dropdownVehicleStatus === null
+        )
+        .filter(
+          (element: Type) =>
+            element.batteryLevelPct >= batteryRange.min &&
+            element.batteryLevelPct <= batteryRange.max
+        )
     );
-  }, [dropdownVehicleStatus]);
+  }, [dropdownVehicleStatus, batteryRange]);
 
   return (
     <div className={"map-wrapper"}>
@@ -71,7 +85,12 @@ export default function App() {
           onChange={updateDropdownKey}
           placeHolder={"Select availability"}
         />
-        <MultiRangeSlider min={0} max={100} onChange={() => {}} />
+        <MultiRangeSlider
+          min={0}
+          title={"Battery life"}
+          max={100}
+          onChange={updateBatteryRange}
+        />
       </div>
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_API_KEY }}

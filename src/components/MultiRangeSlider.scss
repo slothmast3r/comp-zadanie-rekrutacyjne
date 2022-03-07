@@ -1,10 +1,13 @@
+.range-wrapper{
+  display: grid;
+}
+
 .container {
   display: flex;
   align-items: center;
   justify-content: center;
   width: fit-content;
 }
-
 .slider {
   position: relative;
   width: 200px;
