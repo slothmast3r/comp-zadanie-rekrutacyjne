@@ -1,10 +1,12 @@
 // @ts-nocheck
-import React, { useState, useRef } from "react";
+import React, {useState, useRef, useEffect} from "react";
 import GoogleMapReact from "google-map-react";
 import useSupercluster from "use-supercluster";
 import jsonData from "../client/test-data.json";
 import VehicleImage from "./VehicleImage";
 import "./MapWithClusters.scss";
+import Dropdown from "./Dropdown";
+import {useFetch} from "../client/useFetch";
 
 // RENDER PROPS / HOC
 const Marker = ({ children }) => children;
@@ -15,6 +17,8 @@ export default function App() {
   const [zoom, setZoom] = useState(10);
   const dataString = JSON.stringify(jsonData);
   const data = JSON.parse(dataString);
+  // const {data, loading, error} = useFetch('https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE')
+  const availabilityDropdown = [{label: 'Available', id: 'available'}, {label: 'Unavailable', id: 'unavailable'}]
 
   const points = data.objects.map((item) => ({
     type: "Feature",
@@ -34,11 +38,14 @@ export default function App() {
     zoom,
     options: { radius: 75, maxZoom: 20 },
   });
-
+  function updateDropdownKey(arg: string | number | null){
+    console.log(arg)
+  }
   return (
     <div className={"map-wrapper"}>
+      <Dropdown data={availabilityDropdown} updateDropdownKey={updateDropdownKey} placeHolder={'Select availability'}/>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyCHUtrOWFcrWUyqhtUH_OnPB0cBv0HGdhU" }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_API_KEY }}
         defaultCenter={{ lat: 63, lng: 71.135171 }}
         defaultZoom={10}
         yesIWantToUseGoogleMapApiInternals

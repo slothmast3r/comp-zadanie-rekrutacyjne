@@ -6,6 +6,8 @@ export const useFetch = (url: string) => {
   const [error, setError] = useState();
   const [data, setData] = useState<null | ApiTypes>(null);
 
+
+  console.log(url)
   const fetchData = async () => {
     try {
       const responseJson = await fetch(url);

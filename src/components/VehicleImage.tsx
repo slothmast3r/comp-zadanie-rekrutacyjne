@@ -1,7 +1,7 @@
+import "./MapWithClusters.scss"
 interface VehicleType {
   color: string;
 }
-import "./MapWithClusters.scss"
 
 export default function VehicleImage(props: VehicleType) {
   return (
