@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/enigma-zadanie-rekrutacyjne/static/css/main.32487b04.css",
-    "main.js": "/enigma-zadanie-rekrutacyjne/static/js/main.f16c5f07.js",
+    "main.js": "/enigma-zadanie-rekrutacyjne/static/js/main.84c11a70.js",
     "static/js/787.f434388d.chunk.js": "/enigma-zadanie-rekrutacyjne/static/js/787.f434388d.chunk.js",
     "index.html": "/enigma-zadanie-rekrutacyjne/index.html",
     "main.32487b04.css.map": "/enigma-zadanie-rekrutacyjne/static/css/main.32487b04.css.map",
-    "main.f16c5f07.js.map": "/enigma-zadanie-rekrutacyjne/static/js/main.f16c5f07.js.map",
+    "main.84c11a70.js.map": "/enigma-zadanie-rekrutacyjne/static/js/main.84c11a70.js.map",
     "787.f434388d.chunk.js.map": "/enigma-zadanie-rekrutacyjne/static/js/787.f434388d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.32487b04.css",
-    "static/js/main.f16c5f07.js"
+    "static/js/main.84c11a70.js"
   ]
 }
