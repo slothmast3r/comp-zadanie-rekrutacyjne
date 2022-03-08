@@ -5,10 +5,10 @@ import useSupercluster from "use-supercluster";
 import jsonData from "../../client/test-data.json";
 import VehicleMarker from "../VehicleMarker";
 import "./MapWithMarkers.scss";
-import Dropdown from "../Dropdown/Dropdown";
+import Dropdown from "../Dropdown";
 import { useFetch } from "../../client/useFetch";
 import { ApiTypes, Type } from "../../client/api-types";
-import MultiRangeSlider from "../MultiRangeSlider/MultiRangeSlider";
+import MultiRangeSlider from "../MultiRangeSlider";
 
 // RENDER PROPS / HOC
 const Marker = ({ children }) => children;

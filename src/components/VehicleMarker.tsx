@@ -1,4 +1,6 @@
 import "./MapWithMarkers/MapWithMarkers.scss";
+import {Marker} from "@react-google-maps/api";
+import MarkerPopup from "./MarkerPopup"
 interface VehicleType {
   color: string;
   properties: any;
@@ -7,9 +9,9 @@ interface VehicleType {
 export default function VehicleMarker(props: VehicleType) {
   return (
     <div>
-      <div>
+      <MarkerPopup show={true} message={"AAA"}>
 
-      </div>
+      </MarkerPopup>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         version="1.0"

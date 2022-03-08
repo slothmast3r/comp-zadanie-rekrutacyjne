@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export function InfoBox(props: any) {
+export default function MarkerPopup(props: any) {
     const ref = useRef<any>(null);
     const { onClickOutside } = props;
 
