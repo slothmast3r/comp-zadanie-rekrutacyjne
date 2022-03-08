@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import "./MarkerPopup.scss"
 
 export default function MarkerPopup(props: any) {
     const ref = useRef<any>(null);
@@ -20,7 +21,7 @@ export default function MarkerPopup(props: any) {
         return null;
 
     return (
-        <div ref={ref} className='info-box'>
-            {props.message}
+        <div ref={ref} className='marker-popup'>
+            {props.children}
         </div> );
 }

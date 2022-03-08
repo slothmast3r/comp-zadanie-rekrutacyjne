@@ -30,6 +30,13 @@
     background-color:  rgba(blue, 0.1);
   }
 }
+.marker-popup-wrapper{
+  text-align: left;
+  width: max-content;
+  span{
+    font-weight: bold;
+  }
+}
 @media screen and (max-width: 1100px){
   .map-wrapper {
     width: 90vw;
