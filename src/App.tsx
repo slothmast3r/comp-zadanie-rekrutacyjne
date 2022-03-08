@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.scss";
-import MapWithMarkers from "./components/MapWithMarkers";
+import MapWithMarkers from "./components/MapWithMarkers/MapWithMarkers";
 
 
 function App() {

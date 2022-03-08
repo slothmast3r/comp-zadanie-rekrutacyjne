@@ -2,13 +2,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import useSupercluster from "use-supercluster";
-import jsonData from "../client/test-data.json";
-import VehicleImage from "./VehicleImage";
+import jsonData from "../../client/test-data.json";
+import VehicleMarker from "../VehicleMarker";
 import "./MapWithMarkers.scss";
-import Dropdown from "./Dropdown";
-import { useFetch } from "../client/useFetch";
-import { ApiTypes, Type } from "../client/api-types";
-import MultiRangeSlider from "./MultiRangeSlider";
+import Dropdown from "../Dropdown/Dropdown";
+import { useFetch } from "../../client/useFetch";
+import { ApiTypes, Type } from "../../client/api-types";
+import MultiRangeSlider from "../MultiRangeSlider/MultiRangeSlider";
 
 // RENDER PROPS / HOC
 const Marker = ({ children }) => children;
@@ -57,8 +57,7 @@ export default function App() {
     setDropdownVehicleStatus(key);
   }
   function updateBatteryRange(argument) {
-    let argumentcopy = {...argument}
-    setBatteryRange(argumentcopy);
+    setBatteryRange(argument);
   }
 
   useEffect(() => {
@@ -148,7 +147,7 @@ export default function App() {
               lat={latitude}
               lng={longitude}
             >
-              <VehicleImage color={cluster.properties.colour} />
+              <VehicleMarker properties={cluster.properties} color={cluster.properties.colour} />
             </Marker>
           );
         })}
